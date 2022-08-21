@@ -41,6 +41,18 @@ export default function Done({ navigation }) {
             source={require('../../assets/images/bg.png')}
             style={styles.imgBackground}
             resizeMode='cover'>
+            {tasks.filter(task => task.Done === true).length == 0 ?
+            <View
+            style={{
+                flex:1,
+                justifyContent:'center',
+                alignItems:'center',
+                backgroundColor:'rgba(0,0,0,.5)'
+            }}
+            >
+            <Text style={{fontSize:20,color:'white'}}>You don't have any completed tasks</Text>
+            </View>
+            :
             <FlatList
                 data={tasks.filter(task => task.Done === true)}
                 renderItem={({ item }) => (
@@ -52,10 +64,10 @@ export default function Done({ navigation }) {
                         }}
                     >
                         <View style={styles.item_row}>
-                            <CheckBox
+                            {/* <CheckBox
                                 value={item.Done}
                                 onValueChange={(newValue) => { checkTask(item.ID, newValue) }}
-                            />
+                            /> */}
                             <View style={styles.item_body}>
                                 <Text
                                     style={[
@@ -91,6 +103,7 @@ export default function Done({ navigation }) {
                 )}
                 keyExtractor={(item, index) => index.toString()}
             />
+            }
         </ImageBackground>
     )
 }
@@ -102,6 +115,7 @@ const styles = StyleSheet.create({
     item_row: {
         flexDirection: 'row',
         alignItems: 'center',
+        paddingVertical:10
     },
     item_body: {
         flex: 1,
@@ -123,13 +137,15 @@ const styles = StyleSheet.create({
     },
     title: {
         color: '#000000',
-        fontSize: 30,
+        fontSize: 25,
         margin: 5,
+        paddingLeft:10
     },
     subtitle: {
         color: '#999999',
-        fontSize: 20,
+        fontSize: 15,
         margin: 5,
+        paddingLeft:10
     },
     imgBackground: {
         width: '100%',

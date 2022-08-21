@@ -11,7 +11,7 @@ import Tutorial from './screens/Tutorial';
 import { Provider } from 'react-redux';
 import { Store } from './redux/store';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
+import { useSelector } from 'react-redux';
 const Tab = createBottomTabNavigator();
 
 function HomeTabs() {
@@ -46,6 +46,7 @@ function HomeTabs() {
         inactiveTintColor: '#777777',
         labelStyle: { fontSize: 15, fontWeight: 'bold' },
       }}
+      initialRouteName='To-Do'
     >
       <Tab.Screen name={'Tutorial'} component={Tutorial} options={{ header: () => null }} />
       <Tab.Screen name={'To-Do'} component={ToDo} options={{ header: () => null }} />

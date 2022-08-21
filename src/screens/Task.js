@@ -127,13 +127,13 @@ export default function Task({ navigation }) {
                 </Modal>
                 <TextInput
                     value={title}
-                    style={styles.input}
+                    style={{...styles.input,paddingVertical:10}}
                     placeholder='Title'
                     onChangeText={(value) => setTitle(value)}
                 />
                 <TextInput
                     value={desc}
-                    style={styles.input}
+                    style={{...styles.input,paddingVertical:10}}
                     placeholder='Description'
                     multiline
                     onChangeText={(value) => setDesc(value)}
@@ -209,7 +209,7 @@ export default function Task({ navigation }) {
                         value={done}
                         onValueChange={(newValue) => setDone(newValue)}
                     />
-                    <Text style={styles.text}>
+                    <Text style={{...styles.text,marginLeft:10}}>
                         Is Done
                     </Text>
                 </View>

@@ -112,11 +112,11 @@ export default function Tutorial() {
                         </View>
                     </View>
                 </ScrollView>
-                <View style={styles.paginationWrapper}>
+                {/* <View style={styles.paginationWrapper}>
                     {Array.from(Array(7).keys()).map((key, index) => (
                         <View style={[styles.paginationDots, { opacity: pageIndex === index ? 1 : 0.2 }]} key={index} />
                     ))}
-                </View>
+                </View> */}
             </SafeAreaView>
         </>
     );

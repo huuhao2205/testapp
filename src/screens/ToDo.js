@@ -56,12 +56,25 @@ export default function ToDo({ navigation }) {
             source={require('../../assets/images/bg.png')}
             style={styles.imgBackground}
             resizeMode='cover'>
+                {tasks.filter(task => task.Done === false).length == 0 ?
+                <View
+                    style={{
+                        flex:1,
+                        justifyContent:'center',
+                        alignItems:'center',
+                        backgroundColor:'rgba(0,0,0,.5)'
+                    }}
+                >
+                    <Text style={{fontSize:20,color:'white'}}>You haven't added any todos yet</Text>
+                </View>
+                :
                 <FlatList
                     data={tasks.filter(task => task.Done === false)}
                     renderItem={({ item }) => (
                         <TouchableOpacity
                             style={styles.item}
-                            onPress={() => {
+                            onPress={(e) => {
+                                e.preventDefault();
                                 dispatch(setTaskID(item.ID));
                                 navigation.navigate('Task');
                             }}
@@ -77,10 +90,10 @@ export default function ToDo({ navigation }) {
                                         },
                                         styles.color]}
                                 />
-                                <CheckBox
+                                {/* <CheckBox
                                     value={item.Done}
                                     onValueChange={(newValue) => { checkTask(item.ID, newValue) }}
-                                />
+                                /> */}
                                 <View style={styles.item_body}>
                                     <Text
                                         style={[
@@ -116,6 +129,7 @@ export default function ToDo({ navigation }) {
                     )}
                     keyExtractor={(item, index) => index.toString()}
                 />
+                }
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => {
@@ -178,13 +192,15 @@ const styles = StyleSheet.create({
     },
     title: {
         color: '#000000',
-        fontSize: 30,
+        fontSize: 25,
         margin: 5,
+        paddingLeft:10
     },
     subtitle: {
         color: '#999999',
-        fontSize: 20,
+        fontSize: 15,
         margin: 5,
+        paddingLeft:10
     },
     color: {
         width: 20,

@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     CustomFontBig: {
-        fontFamily: 'AbrilFatface-Regular'
+        // fontFamily: 'AbrilFatface-Regular'
     },
     CustomFontHW: {
-        fontFamily: 'IndieFlower-Regular'
+        // fontFamily: 'IndieFlower-Regular'
     },
 });
