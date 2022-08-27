@@ -48,9 +48,30 @@ function HomeTabs() {
       }}
       initialRouteName='To-Do'
     >
-      <Tab.Screen name={'Tutorial'} component={Tutorial} options={{ header: () => null }} />
-      <Tab.Screen name={'To-Do'} component={ToDo} options={{ header: () => null }} />
-      <Tab.Screen name={'Done'} component={Done} options={{ header: () => null }} />
+      <Tab.Screen name={'To-Do'} component={ToDo}
+        options={{
+          headerStyle: {
+            backgroundColor: '#0080ff',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: 'white'
+        }} />
+      <Tab.Screen name={'Done'} component={Done}
+        options={{
+          headerStyle: {
+            backgroundColor: '#0080ff',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: 'white'
+        }} />
+      <Tab.Screen name={'Tutorial'} component={Tutorial}
+        options={{
+          headerStyle: {
+            backgroundColor: '#0080ff',
+          },
+          headerTitleAlign: 'center',
+          headerTintColor: 'white'
+        }} />
     </Tab.Navigator>
   );
 }
@@ -72,7 +93,7 @@ function App() {
             headerTitleStyle: {
               fontSize: 25,
               fontWeight: 'bold'
-            }
+            },
           }}
         >
           <RootStack.Screen
@@ -85,10 +106,23 @@ function App() {
           <RootStack.Screen
             name="My Tasks"
             component={HomeTabs}
+            options={{
+              headerShown: false,
+            }}
           />
           <RootStack.Screen
             name="Task"
             component={Task}
+            options={{
+              title: 'My Task',
+              headerStyle: {
+                backgroundColor: '#0080ff',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
           />
         </RootStack.Navigator>
       </NavigationContainer>

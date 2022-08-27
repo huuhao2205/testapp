@@ -56,16 +56,32 @@ export default function ToDo({ navigation }) {
             source={require('../../assets/images/bg.png')}
             style={styles.imgBackground}
             resizeMode='cover'>
-                {tasks.filter(task => task.Done === false).length == 0 ?
+            {tasks.filter(task => task.Done === false).length == 0 ?
                 <View
                     style={{
-                        flex:1,
-                        justifyContent:'center',
-                        alignItems:'center',
-                        backgroundColor:'rgba(0,0,0,.5)'
+                        flex: 1,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor: 'rgba(0,0,0,.5)'
                     }}
                 >
-                    <Text style={{fontSize:20,color:'white'}}>You haven't added any todos yet</Text>
+                    <Text style={{ fontSize: 20, color: 'white' }}>You haven't added any tasks yet</Text>
+                    <TouchableOpacity
+                        onPress={() =>
+                            navigation.navigate('Tutorial')
+                        }
+                        style={styles.btn}>
+                        <Text style={styles.textbtn}>Tutorial</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.btn}
+                        onPress={() => {
+                            dispatch(setTaskID(tasks.length + 1));
+                            navigation.navigate('Task');
+                        }}
+                    >
+                        <Text style={styles.textbtn}>Add New Task</Text>
+                    </TouchableOpacity>
                 </View>
                 :
                 <FlatList
@@ -129,27 +145,39 @@ export default function ToDo({ navigation }) {
                     )}
                     keyExtractor={(item, index) => index.toString()}
                 />
-                }
-                <TouchableOpacity
-                    style={styles.button}
-                    onPress={() => {
-                        dispatch(setTaskID(tasks.length + 1));
-                        navigation.navigate('Task');
-                    }}
-                >
-                    <FontAwesome5
-                        name={'plus'}
-                        size={20}
-                        color={'#ffffff'}
-                    />
-                </TouchableOpacity>
-        </ImageBackground>
+            }
+            <TouchableOpacity
+                style={styles.button}
+                onPress={() => {
+                    dispatch(setTaskID(tasks.length + 1));
+                    navigation.navigate('Task');
+                }}
+            >
+                <FontAwesome5
+                    name={'plus'}
+                    size={20}
+                    color={'#ffffff'}
+                />
+            </TouchableOpacity>
+        </ImageBackground >
     )
 }
 
 const styles = StyleSheet.create({
     body: {
         flex: 1
+    },
+    textbtn: {
+        fontWeight: 'bold',
+    },
+    btn: {
+        elevation: 8,
+        backgroundColor: "#0080ff",
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 12,
+        marginTop: 10,
+        width: 200,
     },
     button: {
         width: 60,
@@ -194,13 +222,13 @@ const styles = StyleSheet.create({
         color: '#000000',
         fontSize: 25,
         margin: 5,
-        paddingLeft:10
+        paddingLeft: 10
     },
     subtitle: {
         color: '#999999',
         fontSize: 15,
         margin: 5,
-        paddingLeft:10
+        paddingLeft: 10
     },
     color: {
         width: 20,

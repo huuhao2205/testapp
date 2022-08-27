@@ -8,10 +8,11 @@ import {
     PixelRatio,
     Dimensions,
     StatusBar,
-    SafeAreaView
+    SafeAreaView,
+    TouchableOpacity,
 } from "react-native";
 
-export default function Tutorial() {
+export default function Tutorial({ navigation }) {
     const [sliderState, setSliderState] = useState({ currentPage: 0 });
     const { width, height } = Dimensions.get('window');
 
@@ -49,6 +50,14 @@ export default function Tutorial() {
                         <View style={styles.wrapper}>
                             <Text style={styles.header}>Welcome</Text>
                             <Text style={styles.paragraph}>Let Start</Text>
+                            <Text style={styles.paragraph}>Or you can skip the Tutorial</Text>
+                            <TouchableOpacity
+                                style={styles.btn}
+                                onPress={() => {
+                                    navigation.navigate('To-Do');
+                                }}>
+                                <Text style={styles.textbtn}>SKIP</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
                     <View style={{ width, height, alignItems: 'center', marginTop: 5 }}>
@@ -111,6 +120,25 @@ export default function Tutorial() {
                             <Text style={styles.paragraph}>Delete the task after success</Text>
                         </View>
                     </View>
+                    <View style={{ width, height, alignItems: 'center', marginTop: 5 }}>
+                        <Image
+                            source={require('../../assets/images/delete.png')}
+                            style={styles.imageStyle}
+                        />
+                        <View style={styles.wrapper}>
+                            <Text style={styles.header}>Done</Text>
+                            <Text style={styles.paragraph}>Thank you for using our App</Text>
+                            <Text style={styles.paragraph}>Go to To-Do page and create your tasks</Text>
+                            <TouchableOpacity
+                                style={styles.btn}
+                                onPress={() => {
+                                    navigation.navigate('To-Do');
+                                }}>
+                                <Text style={styles.textbtn}>BACK</Text>
+                            </TouchableOpacity>
+                        </View>
+
+                    </View>
                 </ScrollView>
                 {/* <View style={styles.paginationWrapper}>
                     {Array.from(Array(7).keys()).map((key, index) => (
@@ -123,6 +151,19 @@ export default function Tutorial() {
 };
 
 const styles = StyleSheet.create({
+    textbtn: {
+        fontWeight: 'bold',
+    },
+    btn: {
+        elevation: 8,
+        backgroundColor: "#0080ff",
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 12,
+        width: 200,
+        alignItems: 'center',
+        marginTop: 20,
+    },
     imageStyle: {
         height: PixelRatio.getPixelSizeForLayoutSize(135),
         width: '80%',
